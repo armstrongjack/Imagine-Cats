@@ -47,6 +47,16 @@ const ImagesData = [
 
     // type code here for "relation_one" field
   },
+
+  {
+    prompt: 'A magical forest',
+
+    // type code here for "images" field
+
+    // type code here for "relation_one" field
+
+    // type code here for "relation_one" field
+  },
 ];
 
 const TenantsData = [
@@ -81,23 +91,35 @@ const TenantsData = [
 
     // type code here for "relation_one" field
   },
+
+  {
+    name: 'Tenant Five',
+
+    // type code here for "relation_many" field
+
+    // type code here for "relation_one" field
+  },
 ];
 
 const OrganizationsData = [
   {
-    name: 'Pierre Simon de Laplace',
+    name: 'Heike Kamerlingh Onnes',
   },
 
   {
-    name: 'Gertrude Belle Elion',
+    name: 'Alfred Binet',
   },
 
   {
-    name: 'Karl Landsteiner',
+    name: 'Charles Lyell',
   },
 
   {
-    name: 'Albert Einstein',
+    name: 'Neils Bohr',
+  },
+
+  {
+    name: 'Justus Liebig',
   },
 ];
 
@@ -147,6 +169,17 @@ async function associateUserWithOrganization() {
   if (User3?.setOrganization) {
     await User3.setOrganization(relatedOrganization3);
   }
+
+  const relatedOrganization4 = await Organizations.findOne({
+    offset: Math.floor(Math.random() * (await Organizations.count())),
+  });
+  const User4 = await Users.findOne({
+    order: [['id', 'ASC']],
+    offset: 4,
+  });
+  if (User4?.setOrganization) {
+    await User4.setOrganization(relatedOrganization4);
+  }
 }
 
 async function associateImageWithUser() {
@@ -193,6 +226,17 @@ async function associateImageWithUser() {
   if (Image3?.setUser) {
     await Image3.setUser(relatedUser3);
   }
+
+  const relatedUser4 = await Users.findOne({
+    offset: Math.floor(Math.random() * (await Users.count())),
+  });
+  const Image4 = await Images.findOne({
+    order: [['id', 'ASC']],
+    offset: 4,
+  });
+  if (Image4?.setUser) {
+    await Image4.setUser(relatedUser4);
+  }
 }
 
 async function associateImageWithOrganization() {
@@ -238,6 +282,17 @@ async function associateImageWithOrganization() {
   });
   if (Image3?.setOrganization) {
     await Image3.setOrganization(relatedOrganization3);
+  }
+
+  const relatedOrganization4 = await Organizations.findOne({
+    offset: Math.floor(Math.random() * (await Organizations.count())),
+  });
+  const Image4 = await Images.findOne({
+    order: [['id', 'ASC']],
+    offset: 4,
+  });
+  if (Image4?.setOrganization) {
+    await Image4.setOrganization(relatedOrganization4);
   }
 }
 
@@ -286,6 +341,17 @@ async function associateTenantWithOrganization() {
   });
   if (Tenant3?.setOrganization) {
     await Tenant3.setOrganization(relatedOrganization3);
+  }
+
+  const relatedOrganization4 = await Organizations.findOne({
+    offset: Math.floor(Math.random() * (await Organizations.count())),
+  });
+  const Tenant4 = await Tenants.findOne({
+    order: [['id', 'ASC']],
+    offset: 4,
+  });
+  if (Tenant4?.setOrganization) {
+    await Tenant4.setOrganization(relatedOrganization4);
   }
 }
 
